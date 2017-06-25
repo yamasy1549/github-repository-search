@@ -2,5 +2,16 @@
   "name": "github-repository",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.0",
+    "redux-promise": "^0.5.3"
+  }
 }
