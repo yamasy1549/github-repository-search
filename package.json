@@ -17,6 +17,7 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
+    "babel-preset-env": "^1.5.2",
     "css-loader": "^0.28.4",
     "postcss-loader": "^2.0.6",
     "redux-logger": "^3.0.6",
