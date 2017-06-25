@@ -2,6 +2,11 @@
   "name": "github-repository",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress",
+    "start": "webpack-dev-server --watch --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
