@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 Firefox versions",
+            "last 2 Chrome versions",
+            "last 3 Safari versions",
+            "last 2 iOS versions"
+          ]
+        }
+      }
+    ],
+    "react"
+  ]
+}
