@@ -1,19 +1,14 @@
 import React from 'react'
 import RepoList from './RepoList'
 
-const Search = ({ searchResultRepos, searchClick }) => (
+const Search = ({ searchResultRepos, search }) => (
   <div>
-    <form
-      onSubmit={event => {
-        event.preventDefault()
-        searchClick(event)
-        }}
-    >
-      <input placeholder='search keyword' />
-      <button type='submit'>
-        Search
-      </button>
-    </form>
+    <input
+      placeholder='search keyword'
+      onInput={event => {
+        search(event)
+      }}
+    />
     <RepoList repos={searchResultRepos} />
   </div>
 )

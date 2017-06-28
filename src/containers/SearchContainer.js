@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchClick: (event) => {
-      dispatch(searchRepos(event.target.querySelector('input').value))
+    search: (event) => {
+      dispatch(searchRepos(event.target.value))
     }
   }
 }
