@@ -29,9 +29,10 @@ export const searchRepos = (query) => {
   }
 }
 
-export const fetchWatchingReposSuccess = () => {
+export const fetchWatchingReposSuccess = (repos) => {
   return {
-    type: actionTypes.FETCH_WATCHING_REPOS_SUCCESS
+    type: actionTypes.FETCH_WATCHING_REPOS_SUCCESS,
+    repos
   }
 }
 
@@ -46,7 +47,7 @@ export const fetchWatchingRepos = () => {
     const url = 'https://api.github.com/users/' + GITHUB_USERNAME + '/subscriptions'
     axios.get(url)
       .then((response) => {
-        dispatch(fetchWatchingReposSuccess(response.data.items))
+        dispatch(fetchWatchingReposSuccess(response.data))
       })
       .catch((error) => {
         console.log(error)
