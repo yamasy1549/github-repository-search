@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes'
 import axios from 'axios'
+import { GITHUB_USERNAME } from 'babel-dotenv'
 
 export const searchReposSuccess = (repos) => {
   return {
@@ -24,6 +25,32 @@ export const searchRepos = (query) => {
       .catch((error) => {
         console.log(error)
         dispatch(searchReposFailure())
+      })
+  }
+}
+
+export const fetchWatchingReposSuccess = () => {
+  return {
+    type: actionTypes.FETCH_WATCHING_REPOS_SUCCESS
+  }
+}
+
+export const fetchWatchingReposFailure = () => {
+  return {
+    type: actionTypes.FETCH_WATCHING_REPOS_FAILURE
+  }
+}
+
+export const fetchWatchingRepos = () => {
+  return (dispatch) => {
+    const url = 'https://api.github.com/users/' + GITHUB_USERNAME + '/subscriptions'
+    axios.get(url)
+      .then((response) => {
+        dispatch(fetchWatchingReposSuccess(response.data.items))
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch(fetchWatchingReposFailure())
       })
   }
 }
