@@ -1,15 +1,10 @@
 import React from 'react'
 import RepoList from './RepoList'
 
-const WatchingRepos = ({ watchingRepos, fetch }) => (
+const WatchingRepos = ({ watchingRepos, watch, unwatch }) => (
   <div>
     <h2>WatchingRepos</h2>
-    <button onClick={event => {
-      fetch()
-    }}>
-      fetch
-    </button>
-    <RepoList repos={watchingRepos} />
+    <RepoList repos={watchingRepos} watch={watch} unwatch={unwatch} />
   </div>
 )
 export default WatchingRepos

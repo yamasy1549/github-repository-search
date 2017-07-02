@@ -1,6 +1,6 @@
 import { connect }            from 'react-redux'
 import WatchingRepos          from '../components/WatchingRepos'
-import { fetchWatchingRepos } from '../actions'
+import { watchRepo, unwatchRepo } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -10,8 +10,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetch: () => {
-      dispatch(fetchWatchingRepos())
+    watch: (repo) => {
+      dispatch(watchRepo(repo))
+    },
+
+    unwatch: (repo) => {
+      dispatch(unwatchRepo(repo))
     }
   }
 }

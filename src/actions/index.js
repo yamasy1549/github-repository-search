@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes'
 import axios from 'axios'
-import { GITHUB_USERNAME } from 'babel-dotenv'
+import { GITHUB_USERNAME, GITHUB_OAUTH_TOKEN } from 'babel-dotenv'
 
 export const searchReposSuccess = (repos) => {
   return {
@@ -52,6 +52,66 @@ export const fetchWatchingRepos = () => {
       .catch((error) => {
         console.log(error)
         dispatch(fetchWatchingReposFailure())
+      })
+  }
+}
+
+export const watchRepoSuccess = (repo) => {
+  return {
+    type: actionTypes.WATCH_REPO_SUCCESS,
+    repo
+  }
+}
+
+export const watchRepoFailure = () => {
+  return {
+    type: actionTypes.WATCH_REPO_FAILURE
+  }
+}
+
+export const watchRepo = (repo) => {
+  return (dispatch) => {
+    const url = 'https://api.github.com/user/subscriptions/' + repo.full_name
+    const headers = {
+      'Authorization': 'token ' + GITHUB_OAUTH_TOKEN
+    }
+    axios.put(url, {}, {headers})
+      .then((response) => {
+        dispatch(watchRepoSuccess(repo))
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch(watchRepoSuccess())
+      })
+  }
+}
+
+export const unwatchRepoSuccess = (repo) => {
+  return {
+    type: actionTypes.UNWATCH_REPO_SUCCESS,
+    repo
+  }
+}
+
+export const unwatchRepoFailure = () => {
+  return {
+    type: actionTypes.UNWATCH_REPO_FAILURE
+  }
+}
+
+export const unwatchRepo = (repo) => {
+  return (dispatch) => {
+    const url = 'https://api.github.com/user/subscriptions/' + repo.full_name
+    const headers = {
+      'Authorization': 'token ' + GITHUB_OAUTH_TOKEN
+    }
+    axios.delete(url, {headers})
+      .then((response) => {
+        dispatch(unwatchRepoSuccess(repo))
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch(unwatchRepoFailure())
       })
   }
 }

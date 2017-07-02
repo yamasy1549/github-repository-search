@@ -10,6 +10,16 @@ const searchResultRepos = (state = defaultState, action) => {
         return repo(r, action)
       })
 
+    case actionTypes.WATCH_REPO_SUCCESS:
+      return state.map((r) => {
+        return (r.id == action.repo.id) ? Object.assign({}, r, { watching: true }) : r
+      })
+
+    case actionTypes.UNWATCH_REPO_SUCCESS:
+      return state.map((r) => {
+        return (r.id == action.repo.id) ? Object.assign({}, r, { watching: false }) : r
+      })
+
     default:
       return state
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import RepoList from './RepoList'
 
-const Search = ({ searchResultRepos, search }) => (
+const Search = ({ searchResultRepos, search, watch, unwatch }) => (
   <div>
     <input
       placeholder='search keyword'
@@ -9,7 +9,7 @@ const Search = ({ searchResultRepos, search }) => (
         search(event)
       }}
     />
-    <RepoList repos={searchResultRepos} />
+    <RepoList repos={searchResultRepos} watch={watch} unwatch={unwatch} />
   </div>
 )
 export default Search

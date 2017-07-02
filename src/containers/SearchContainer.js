@@ -1,6 +1,6 @@
 import { connect }     from 'react-redux'
 import Search          from '../components/Search'
-import { searchRepos } from '../actions'
+import { searchRepos, watchRepo, unwatchRepo } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +13,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     search: (event) => {
       dispatch(searchRepos(event.target.value))
+    },
+
+    watch: (repo) => {
+      dispatch(watchRepo(repo))
+    },
+
+    unwatch: (repo) => {
+      dispatch(unwatchRepo(repo))
     }
   }
 }

@@ -10,10 +10,10 @@ const watchingRepos = (state = defaultState, action) => {
         return repo(r, action)
       })
 
-    case actionTypes.WATCH_SUCCESS:
-      return state.concat(repo(action.repo, action))
+    case actionTypes.WATCH_REPO_SUCCESS:
+      return [...state, repo(action.repo, action)]
 
-    case actionTypes.UNWATCH_SUCCESS:
+    case actionTypes.UNWATCH_REPO_SUCCESS:
       return state.filter((r) => {
         return r.id != action.repo.id
       })
