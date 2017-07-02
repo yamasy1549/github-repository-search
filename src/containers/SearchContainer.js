@@ -12,7 +12,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     search: (event) => {
-      dispatch(searchRepos(event.target.value))
+      const query = event.target.value
+      if(query) {
+        dispatch(searchRepos(query))
+      }
     },
 
     watch: (repo) => {
