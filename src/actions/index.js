@@ -2,10 +2,11 @@ import actionTypes from './actionTypes'
 import axios from 'axios'
 import { GITHUB_USERNAME, GITHUB_OAUTH_TOKEN } from 'babel-dotenv'
 
-export const searchReposSuccess = (repos) => {
+export const searchReposSuccess = (resultRepos, watchingRepoIDs) => {
   return {
     type: actionTypes.SEARCH_REPOS_SUCCESS,
-    repos
+    resultRepos,
+    watchingRepoIDs
   }
 }
 
@@ -16,11 +17,14 @@ export const searchReposFailure = () => {
 }
 
 export const searchRepos = (query) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const url = 'https://api.github.com/search/repositories?sort=stars&q=' + query
     axios.get(url)
       .then((response) => {
-        dispatch(searchReposSuccess(response.data.items))
+        const watchingRepoIDs = getState().watchingRepos.map((r) => {
+          return r.id
+        })
+        dispatch(searchReposSuccess(response.data.items, watchingRepoIDs))
       })
       .catch((error) => {
         console.log(error)

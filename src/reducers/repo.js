@@ -17,7 +17,11 @@ const defaultRepoProperties = (state) => {
 const repo = (state = defaultState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_REPOS_SUCCESS:
-      return defaultRepoProperties(state)
+      if(action.watchingRepoIDs.includes(state.id)) {
+        return Object.assign({}, defaultRepoProperties(state), { watching: true })
+      } else {
+        return defaultRepoProperties(state)
+      }
 
     case actionTypes.FETCH_WATCHING_REPOS_SUCCESS:
       return Object.assign({}, defaultRepoProperties(state), { watching: true })
