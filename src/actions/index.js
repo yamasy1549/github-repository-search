@@ -18,7 +18,7 @@ export const searchReposFailure = () => {
 
 export const searchRepos = (query) => {
   return (dispatch, getState) => {
-    const url = 'https://api.github.com/search/repositories?sort=stars&q=' + query
+    const url = 'https://api.github.com/search/repositories?q=' + query
     axios.get(url)
       .then((response) => {
         const watchingRepoIDs = getState().watchingRepos.map((r) => {
