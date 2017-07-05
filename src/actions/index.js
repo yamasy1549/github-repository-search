@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes'
 import axios from 'axios'
 import { GITHUB_USERNAME, GITHUB_OAUTH_TOKEN } from 'babel-dotenv'
+const PER_PAGE = 60
 
 export const searchReposSuccess = (resultRepos, watchingRepoIDs) => {
   return {
@@ -18,7 +19,7 @@ export const searchReposFailure = () => {
 
 export const searchRepos = (query) => {
   return (dispatch, getState) => {
-    const url = 'https://api.github.com/search/repositories?q=' + query
+    const url = `https://api.github.com/search/repositories?per_page=${PER_PAGE}&q=${query}`
     axios.get(url)
       .then((response) => {
         const watchingRepoIDs = getState().watchingRepos.map((r) => {
@@ -48,7 +49,7 @@ export const fetchWatchingReposFailure = () => {
 
 export const fetchWatchingRepos = () => {
   return (dispatch) => {
-    const url = 'https://api.github.com/users/' + GITHUB_USERNAME + '/subscriptions'
+    const url = `https://api.github.com/users/${GITHUB_USERNAME}/subscriptions?per_page=${PER_PAGE}`
     axios.get(url)
       .then((response) => {
         dispatch(fetchWatchingReposSuccess(response.data))
